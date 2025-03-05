@@ -1,0 +1,539 @@
+:root {
+  --color-white: white;
+  --color-black: rgba(14, 12, 12, 1);
+  --color-red: rgba(202, 24, 24, 1);
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/rubik-v28-arabic_cyrillic_cyrillic-ext_hebrew_latin_latin-ext-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/rubik-v28-arabic_cyrillic_cyrillic-ext_hebrew_latin_latin-ext-500.woff2") format("woff2");
+}
+body {
+  background: transparent;
+  margin: 0;
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+}
+body h3 {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+#mafia-control-panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(50, 50, 50, 0.9);
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  z-index: 1;
+  overflow-y: visible;
+}
+#mafia-control-panel button {
+  font-size: larger;
+}
+#mafia-control-panel * {
+  margin-bottom: 3px;
+}
+#mafia-control-panel .role {
+  display: inline-block;
+  width: 68px;
+  padding: 0 20px;
+}
+#mafia-control-panel .control_fouls {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+  width: 38px;
+  text-align: center;
+  height: 22px;
+  border: solid 2px red;
+  font-size: larger;
+  padding: 5px;
+}
+#mafia-control-panel .D-button {
+  background-color: red;
+  font-size: larger;
+  width: 50px;
+}
+#mafia-control-panel .V-button {
+  background-color: coral;
+  font-size: larger;
+  width: 50px;
+}
+#mafia-control-panel .next-phase {
+  font-size: larger;
+}
+#mafia-control-panel #toggle-roles-button {
+  font-size: larger;
+}
+#mafia-control-panel #no-vote-button {
+  font-size: larger;
+}
+#mafia-control-panel #nomination-buttons button {
+  font-size: larger;
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+}
+#mafia-control-panel #control-nominated-info div {
+  margin: 0 7px 0 0;
+  display: inline-block;
+  font-size: larger;
+}
+#mafia-control-panel .night-action {
+  background-color: green;
+  font-size: larger;
+}
+#mafia-control-panel #night-actions input {
+  height: 40px;
+  width: 40px;
+}
+#mafia-control-panel button:disabled {
+  display: none;
+}
+#mafia-control-panel #nomination-buttons {
+  display: none;
+}
+#mafia-control-panel #shots-info {
+  display: none;
+}
+#mafia-control-panel #nominated-info {
+  display: none;
+}
+
+#mafia-overlay {
+  color: var(--color-white);
+  padding: 20px;
+  border-radius: 5px;
+  z-Index: 500;
+}
+#mafia-overlay p {
+  margin: 0;
+}
+#mafia-overlay h3 {
+  margin: 0;
+}
+#mafia-overlay .game-number-container {
+  width: 144.4px;
+  height: 46px;
+  border-radius: 8px;
+  background-image: linear-gradient(90deg, var(--color-black) 0%, var(--color-red));
+}
+#mafia-overlay .game-number-container h3 {
+  font-size: 26px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+#events-container {
+  display: flex;
+  justify-content: space-between;
+}
+#events-container .events-container__info {
+  height: 46px;
+  min-width: 120px;
+  padding: 0 6px;
+  background-color: rgba(14, 12, 12, 0.6);
+  align-items: center;
+  gap: 6px;
+  border-radius: 8px;
+  display: flex;
+  position: relative;
+}
+#events-container .wrapper {
+  display: flex;
+  gap: 30px;
+}
+#events-container .events-container__child {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+#nominated-info {
+  transform: translateX(10px);
+}
+#nominated-info h3 {
+  width: 100px;
+  height: 30px;
+  background-color: var(--color-black);
+  font-size: 15px;
+  text-align: center;
+  align-content: center;
+  justify-self: center;
+  border-radius: 8px;
+}
+#nominated-info .players-list {
+  background-color: rgba(14, 12, 12, 0.6);
+  border-radius: 8px;
+  border: solid 4px var(--color-black);
+  width: 100%;
+  max-width: 126px;
+}
+#nominated-info .info-container {
+  flex-direction: column;
+  flex-basis: 126px;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+}
+
+.players-list {
+  padding: 6px;
+  min-height: 26px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-flow: wrap;
+}
+
+.judge_box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-self: end;
+}
+.judge_box h3 {
+  width: 100px;
+  height: 30px;
+  background-color: var(--color-black);
+  font-size: 15px;
+  text-align: center;
+  align-content: center;
+  justify-self: center;
+  border-radius: 8px;
+}
+.judge_box #judge-name {
+  height: 38px;
+  width: 144px;
+  background-color: rgba(14, 12, 12, 0.6);
+  padding: 0 6px;
+  border-radius: 8px;
+  border: solid 4px var(--color-black);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+#voted-info .players-list {
+  padding: 6px 0 6px 6px;
+}
+
+#number-selection-modal {
+  position: absolute;
+  top: 0;
+  right: 229px;
+  background-color: var(--color-white);
+  padding: 20px;
+  border: 2px solid var(--color-black);
+  z-index: 3;
+}
+#number-selection-modal h3 {
+  margin-top: 0;
+}
+#number-selection-modal button {
+  font-size: larger;
+}
+
+svg {
+  fill: var(--color-white);
+}
+
+.player__killed svg, .player__deleted svg, .player__voted svg, .player__don svg, .player__voted svg, .player__sheriff svg {
+  transform: translateY(2px);
+}
+
+#players-info {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 68px;
+  left: 20px;
+  right: 20px;
+  align-items: self-end;
+}
+#players-info .best-move {
+  display: block;
+  position: absolute;
+  top: -40px;
+  width: 150px;
+  height: 16px;
+  border: 4px solid;
+  border-radius: 8px;
+  padding: 6px;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 18px;
+}
+#players-info .player {
+  position: relative;
+}
+#players-info .player .player-photo {
+  width: 162px;
+  height: 152px;
+  border: 4px solid;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  -o-object-position: top;
+     object-position: top;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#players-info .player__info {
+  position: relative;
+}
+#players-info .player__name {
+  width: 130px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  border-radius: 8px;
+  text-align: center;
+  align-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#players-info .player__number {
+  position: absolute;
+  left: 0;
+  border: 4px solid;
+  border-radius: 50%;
+  text-align: center;
+  align-content: center;
+  height: 45px;
+  width: 45px;
+  z-index: 3;
+}
+#players-info .player__foul {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  bottom: 4px;
+  right: 0;
+  border-radius: 8px 0;
+  z-index: 2;
+  text-align: center;
+  align-content: center;
+  font-size: 30px;
+}
+#players-info .player__killed, #players-info .player__deleted, #players-info .player__voted {
+  width: 45px;
+  height: 45px;
+  position: absolute;
+  bottom: 6px;
+  right: 0;
+  border-radius: 8px 0;
+  z-index: 3;
+  align-content: center;
+}
+#players-info .player__sheriff, #players-info .player__voted, #players-info .player__killed, #players-info .player__don, #players-info .player__deleted {
+  text-align: center;
+  align-content: center;
+}
+#players-info .alive .player__voted, #players-info .alive .player__killed, #players-info .alive .player__deleted {
+  display: none;
+}
+#players-info .voted .player__deleted, #players-info .killed .player__deleted {
+  display: none;
+}
+#players-info .deleted .player__voted,
+#players-info .killed .player__voted {
+  display: none;
+}
+#players-info .deleted .player__killed,
+#players-info .voted .player__killed {
+  display: none;
+}
+#players-info .mafia .player__number,
+#players-info .don .player__number {
+  background-color: var(--color-black);
+}
+#players-info .mafia .player__name,
+#players-info .don .player__name {
+  background-color: rgba(14, 12, 12, 0.6);
+}
+#players-info .mafia .best-move,
+#players-info .don .best-move {
+  background-color: rgba(14, 12, 12, 0.6);
+}
+#players-info .civilian .player__number,
+#players-info .sheriff .player__number {
+  background-color: var(--color-red);
+}
+#players-info .civilian .player__name,
+#players-info .sheriff .player__name {
+  background-color: rgba(202, 24, 24, 0.6);
+}
+#players-info .civilian .best-move,
+#players-info .sheriff .best-move {
+  background-color: rgba(202, 24, 24, 0.6);
+}
+#players-info .player-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+}
+#players-info .voted .player-photo, #players-info .killed .player-photo, #players-info .deleted .player-photo {
+  height: 112px;
+}
+
+#players-info .civilian .player-photo, #players-info .civilian .player__name, #players-info .civilian .player__number, #players-info .sheriff .player-photo, #players-info .sheriff .player__name, #players-info .sheriff .player__number {
+  border: 4px solid var(--color-red);
+}
+#players-info .civilian .player__foul, #players-info .sheriff .player__foul {
+  background-color: var(--color-red);
+}
+#players-info .civilian .player__don, #players-info .sheriff .player__don {
+  display: none;
+}
+#players-info .civilian .best-move, #players-info .sheriff .best-move {
+  border: 4px solid var(--color-red);
+}
+#players-info .civilian .player__sheriff, #players-info .sheriff .player__sheriff {
+  display: none;
+}
+#players-info .civilian.voted .player__voted, #players-info .sheriff.voted .player__voted {
+  display: block;
+  background-color: var(--color-red);
+}
+#players-info .civilian.killed .player__killed, #players-info .sheriff.killed .player__killed {
+  display: block;
+  background-color: var(--color-red);
+}
+#players-info .civilian.deleted .player__deleted, #players-info .sheriff.deleted .player__deleted {
+  display: block;
+  background-color: var(--color-red);
+}
+#players-info .sheriff .player__sheriff {
+  display: block;
+  width: 45px;
+  height: 45px;
+  background-color: var(--color-red);
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 8px;
+}
+#players-info .sheriff .player__don {
+  display: none;
+}
+#players-info .voted.civilian .player-img,
+#players-info .voted.sheriff .player-img, #players-info .killed.civilian .player-img,
+#players-info .killed.sheriff .player-img, #players-info .deleted.civilian .player-img,
+#players-info .deleted.sheriff .player-img {
+  filter: grayscale(0.6);
+}
+
+#players-info .mafia .player-photo, #players-info .mafia .player__name, #players-info .mafia .player__number, #players-info .don .player-photo, #players-info .don .player__name, #players-info .don .player__number {
+  border: 4px solid var(--color-black);
+}
+#players-info .mafia .player__don, #players-info .don .player__don {
+  display: none;
+}
+#players-info .mafia .player__sheriff, #players-info .don .player__sheriff {
+  display: none;
+}
+#players-info .mafia .best-move, #players-info .don .best-move {
+  border: 4px solid var(--color-black);
+}
+#players-info .don .player__don {
+  display: block;
+  width: 45px;
+  height: 45px;
+  background-color: var(--color-black);
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 8px;
+}
+#players-info .don .player__sheriff {
+  display: none;
+}
+#players-info .don.voted .player__voted, #players-info .mafia.voted .player__voted {
+  display: block;
+  background-color: var(--color-black);
+}
+#players-info .don.killed .player__killed, #players-info .mafia.killed .player__killed {
+  display: block;
+  background-color: var(--color-black);
+}
+#players-info .don.deleted .player__deleted, #players-info .mafia.deleted .player__deleted {
+  display: block;
+  background-color: var(--color-black);
+}
+#players-info .mafia.player__foul {
+  display: none;
+  background-color: var(--color-black);
+}
+#players-info .mafia .player__foul, #players-info .don .player__foul {
+  background-color: var(--color-black);
+}
+#players-info .killed.mafia .player-img,
+#players-info .killed.don .player-img, #players-info .deleted.mafia .player-img,
+#players-info .deleted.don .player-img, #players-info .voted.mafia .player-img,
+#players-info .voted.don .player-img {
+  filter: grayscale(0.6);
+}
+
+#shots-info div, #sheriff-info div, #don-info div, .best-move div, .players-list div {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  align-content: center;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  background-color: var(--color-red);
+}
+#shots-info .don-num,
+#shots-info .mafia-num, #sheriff-info .don-num,
+#sheriff-info .mafia-num, #don-info .don-num,
+#don-info .mafia-num, .best-move .don-num,
+.best-move .mafia-num, .players-list .don-num,
+.players-list .mafia-num {
+  background-color: var(--color-black);
+}
+
+.info-container .mafia-num, .info-container .don-num {
+  background-color: var(--color-black);
+}
+
+.events-container__info .sheriff-num {
+  color: transparent;
+  position: relative;
+}
+.events-container__info .sheriff-num::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: url("../img/sheriff-star.svg") no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+}/*# sourceMappingURL=main.css.map */
