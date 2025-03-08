@@ -463,6 +463,10 @@ applyClasses("don-info", this.donChecks, "Перевірка Дона");
     }
 
     renderRoleSelection() {
+      if (!Array.isArray(this.players)) {
+        console.error("Ошибка: this.players не является массивом", this.players);
+        this.players = []; 
+    } ////
       const roleDiv = document.getElementById("role-selection");
       roleDiv.style.display = "block";
       roleDiv.innerHTML = "";
@@ -503,7 +507,7 @@ applyClasses("don-info", this.donChecks, "Перевірка Дона");
       document.getElementById("player-setup").style.display = "none";
       document.getElementById("game-controls").style.display = "block";
       
-      this.renderRoleSelection();
+      
 
 
       localStorage.removeItem("mafiaShots");
@@ -530,7 +534,8 @@ applyClasses("don-info", this.donChecks, "Перевірка Дона");
       for (let i = 1; i <= 10; i++) {
         const name = document.getElementById(`player${i}-name`).value || `Гравець ${i}`;
         this.players.push({ number: i, name, role: "civilian", status: "alive", fouls: 0 });
-      }
+          }
+          this.renderRoleSelection();
       localStorage.setItem("mafiaPlayers", JSON.stringify(this.players));
       document.getElementById("player-setup").style.display = "none";
       document.getElementById("game-controls").style.display = "block";
