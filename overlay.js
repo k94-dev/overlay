@@ -146,7 +146,7 @@
 
           
 
-        const playerContent = `<div class="player-photo"><img class="player-img" src="./img/${player.name}.png" alt=""> 
+        const playerContent = `<div class="player-photo"> <img class="player-img" src="./img/${player.name}.png" alt="" onerror="this.onerror=null;this.src='./img/default.png';"> 
       <div class="player__sheriff"><svg class="players-svg" width="30px" height="30px">
                   <use href="./img/sprite.svg#icon-sheriff"></use>
                 </svg></div> 
@@ -680,7 +680,7 @@ this.shots.forEach(num => {
 
 if (!this.firstNightPassed && killedPlayers.length > 0) {
     firstKilledPlayer = killedPlayers[0]; 
-    console.log("⚡ Вызов showNumberSelectionModal для", firstKilledPlayer.number);
+    console.log(" Вызов showNumberSelectionModal для", firstKilledPlayer.number);
     this.showNumberSelectionModal(firstKilledPlayer);
     this.firstNightPassed = true;
 }
