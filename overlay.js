@@ -147,22 +147,22 @@
           
 
         const playerContent = `<div class="player-photo"> <img class="player-img" src="./img/${player.name}.png" alt="" onerror="this.onerror=null;this.src='./img/default.png';"> 
-      <div class="player__sheriff"><svg class="players-svg" width="30px" height="30px">
+      <div class="player__sheriff"><svg class="players-svg" width="25px" height="25px">
                   <use href="./img/sprite.svg#icon-sheriff"></use>
                 </svg></div> 
-      <div class="player__don"><svg class="players-svg" width="35px" height="35px">
+      <div class="player__don"><svg class="players-svg" width="30px" height="30px">
                   <use href="./img/sprite.svg#icon-hat"></use>
                 </svg></div>
-      <div class="player__killed"><svg class="players-svg" width="38px" height="38px">
+      <div class="player__killed"><svg class="players-svg" width="32px" height="32px">
                   <use href="./img/sprite.svg#icon-killed"></use>
                 </svg></div>
       <div class="player__foul" style="display: ${player.fouls > 0 ? "block" : "none"};">
           ${"!".repeat(player.fouls)}
       </div>
-      <div class="player__voted"><svg class="players-svg" width="30px" height="30px">
+      <div class="player__voted"><svg class="players-svg" width="25px" height="25px">
                   <use href="./img/sprite.svg#icon-voted"></use>
                 </svg></div>
-      <div class="player__deleted"><svg class="players-svg" width="26px" height="26px">
+      <div class="player__deleted"><svg class="players-svg" width="22px" height="22px">
                   <use href="./img/sprite.svg#icon-deleted"></use>
                 </svg></div> </div>
       <div class="player__info">
